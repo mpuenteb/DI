@@ -7,6 +7,8 @@ package t1_menu;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JMenuItem;
 
 /**
@@ -15,17 +17,33 @@ import javax.swing.JMenuItem;
  */
 public class Menu3 extends javax.swing.JFrame {
 
+     private final ActionListener gestorEvento;
     /**
      * Creates new form Menu3
      */
     public Menu3() {
         initComponents();
+        
+        gestorEvento=new ActionListener() {
+       
+            @Override
+           public void actionPerformed(ActionEvent ae) {
+                // Se recoge el objeto que genera el evento
+                Object fuenteEvento=ae.getSource();
+                // Se cambia el tamaño según la opción escogida
+                if (fuenteEvento==miGrande) setSize(800, 700);
+                if(fuenteEvento==miMediano) setSize(400, 300);
+            }
+
+            
+        };
+        
+         // Se indica para cada jItemMenu el gestor de los eventos
+        miGrande.addActionListener(gestorEvento);
+        miMediano.addActionListener(gestorEvento);
     }
     
-    public void Menu3(){
-        oyente o=new oyente();
-        
-    }
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
